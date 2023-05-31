@@ -39,6 +39,24 @@ export default function Tasks() {
     setFilter(event.target.value);
   };
 
+  const updateTask = (event) => {
+    event.preventDefault();
+    const task = {
+      id: event.target.id.value,
+      description: event.target.description.value,
+      assignedEmployeeId: event.target.assignedEmployeeId.value,
+    };
+    axios
+      .put(`http://localhost:8080/tasks/${event.target.id.value}`, task)
+      .then(() => {
+        console.log("get tasklist");
+        axios.get("http://localhost:8080/tasks").then((response) => {
+          // setFilteredList(response.data);
+          setTaskList(response.data);
+        });
+      });
+  };
+
   return (
     <section className="tasks">
       <div className="tasks__topper">
@@ -61,6 +79,19 @@ export default function Tasks() {
               <div className="tasks__content">
                 <p className="tasks__employee">{filteredEmployee.name}</p>
                 <p className="tasks__description">{task.description}</p>
+                <form className="edit-form" onSubmit={updateTask}>
+                  <textarea
+                    name="description"
+                    defaultValue={task.description}
+                  ></textarea>
+                  <input type="hidden" name="id" value={task.id} />
+                  <input
+                    type="hidden"
+                    name="assignedEmployeeId"
+                    value={task.assignedEmployeeId}
+                  />
+                  <button>Save</button>
+                </form>
               </div>
 
               <div className="tasks__btn-container">
