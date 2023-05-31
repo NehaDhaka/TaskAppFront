@@ -1,10 +1,10 @@
 import "./Employees.scss";
 import { useState, useEffect } from "react";
-import employees from "../../employees.json";
 import EmployeeItem from "../EmployeeItem/EmployeeItem";
+import axios from "axios";
 export default function Employees() {
   const [filter, setFilter] = useState("");
-  const [employeesList, setEmployeesList] = useState(employees);
+  const [employeesList, setEmployeesList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
@@ -15,11 +15,17 @@ export default function Employees() {
   }, []);
 
   useEffect(() => {
-    setEmployeesList(() => {
-      return employees.filter((employee) => employee.name.includes(filter));
+    if (employeesList.length === 0) {
+      return;
+    }
+    setFilteredList(() => {
+      return employeesList.filter((employee) => employee.name.includes(filter));
     });
   }, [filter]);
 
+  if (employeesList.length === 0) {
+    return <h1>Loading..</h1>;
+  }
   const handleChange = (event) => {
     setFilter(event.target.value);
   };
@@ -36,7 +42,7 @@ export default function Employees() {
           onChange={handleChange}
         />
       </div>
-      <EmployeeItem employeesList={employeesList} />
+      <EmployeeItem employeesList={filteredList} />
     </section>
   );
 }
