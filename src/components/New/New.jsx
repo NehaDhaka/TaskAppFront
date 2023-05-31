@@ -2,6 +2,7 @@ import "./New.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 export default function New() {
   const unique_id = uuid();
@@ -9,7 +10,8 @@ export default function New() {
   const [employeesList, setEmployeesList] = useState([]);
   const [assignedEmployeeId, setAssignedEmployeeId] = useState(0);
   const [description, setDescription] = useState("");
-  let isSelected = false;
+  const navigate = useNavigate();
+
   useEffect(() => {
     axios.get("http://localhost:8080/employees").then((response) => {
       setEmployeesList(response.data);
@@ -22,7 +24,6 @@ export default function New() {
 
   function handleOnClick(employeeId) {
     setAssignedEmployeeId(employeeId);
-    isSelected = true;
   }
 
   function handleChange(event) {
@@ -40,6 +41,7 @@ export default function New() {
       dueDate: 10,
     };
     axios.post("http://localhost:8080/tasks", formData);
+    navigate("/");
   }
   return (
     <section className="new">
@@ -64,6 +66,7 @@ export default function New() {
           {employeesList.map((employee) => (
             <li
               onClick={() => {
+                console.log(employee.id);
                 handleOnClick(employee.id);
               }}
               key={employee.id}
