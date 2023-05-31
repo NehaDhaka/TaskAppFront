@@ -2,4 +2,8 @@
 
 .new {
   @include path;
+
+  .heading {
+    @include heading;
+  }
 }

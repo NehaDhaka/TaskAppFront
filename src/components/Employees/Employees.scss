@@ -1,4 +1,26 @@
 @import "../../partials/mixins";
 .employees {
   @include path;
+
+  &__heading {
+    @include heading;
+  }
+
+  &__topper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__filter {
+    padding: 0.6rem 2rem;
+    border-radius: 6px;
+    border: none;
+    background-image: url("../../assets/search-outline.svg");
+    background-repeat: no-repeat;
+    background-position: right;
+    &:focus {
+      outline: 2px solid $primary-brand;
+    }
+  }
 }
