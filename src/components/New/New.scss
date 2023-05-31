@@ -3,7 +3,7 @@
 .new {
   @include path;
 
-  .heading {
+  &__heading {
     @include heading;
   }
 }

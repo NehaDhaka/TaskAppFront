@@ -64,7 +64,7 @@ export default function Tasks() {
               </div>
 
               <div className="tasks__btn-container">
-                <ion-icon name="cloud-upload"></ion-icon>
+                <ion-icon name="create"></ion-icon>
                 <ion-icon name="trash-bin"></ion-icon>
               </div>
             </li>
