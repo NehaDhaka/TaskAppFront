@@ -1,11 +1,14 @@
 import "./Tasks.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 export default function Tasks() {
   const [filter, setFilter] = useState("");
   const [taskList, setTaskList] = useState([]);
   const [employeesArr, setEmployeesArr] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -39,6 +42,16 @@ export default function Tasks() {
     setFilter(event.target.value);
   };
 
+  const handleDelete = (taskId) => {
+    console.log(taskId);
+    axios.delete(`http://localhost:8080/tasks/${taskId}`).then(() => {
+      axios.get("http://localhost:8080/tasks").then((response) => {
+        console.log(response);
+        setFilteredList(response.data);
+        setTaskList(response.data);
+      });
+    });
+  };
   return (
     <section className="tasks">
       <div className="tasks__topper">
@@ -65,7 +78,12 @@ export default function Tasks() {
 
               <div className="tasks__btn-container">
                 <ion-icon name="create"></ion-icon>
-                <ion-icon name="trash-bin"></ion-icon>
+                <ion-icon
+                  onClick={() => {
+                    handleDelete(task.id);
+                  }}
+                  name="trash-bin"
+                ></ion-icon>
               </div>
             </li>
           );
