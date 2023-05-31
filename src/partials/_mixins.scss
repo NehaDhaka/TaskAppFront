@@ -1,0 +1,25 @@
+@import "./variables";
+@mixin path {
+  flex: 3;
+  padding: 3rem;
+
+  margin-left: 25rem;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin heading {
+  font-size: 3rem;
+  color: $primary-brand;
+}
+
+@mixin button-primary {
+  border: none;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  padding: 1rem 3rem;
+  cursor: pointer;
+}

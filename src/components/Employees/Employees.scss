@@ -1,0 +1,4 @@
+@import "../../partials/mixins";
+.employees {
+  @include path;
+}

@@ -1,22 +1,24 @@
 @import "../../partials/variables";
 @import "../../partials/resets";
+@import "../../partials/mixins";
+@import "../../partials/global";
 
 .navbar {
   background-color: $primary-brand;
   color: $primary-light;
-
-  display: flex;
-  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  width: 25rem;
+  @include flex-column;
   flex: 1;
   align-items: center;
   gap: 5rem;
 
   &__list {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     list-style: none;
     font-size: 2rem;
-    gap: 2rem;
+    gap: 4rem;
   }
 
   &__logo {
@@ -24,7 +26,10 @@
   }
 
   &__item {
+    color: $primary-light;
+    text-decoration: none;
     transition: all 0.3s;
+    padding-bottom: 0.6rem;
   }
 
   &__item:hover {

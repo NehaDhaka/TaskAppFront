@@ -1,0 +1,70 @@
+@import "../../partials/mixins";
+.tasks {
+  @include path;
+
+  &__heading {
+    @include heading;
+  }
+
+  &__topper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__filter {
+    padding: 0.6rem 2rem;
+    border-radius: 6px;
+    border: none;
+    background-image: url("../../assets/search-outline.svg");
+    background-repeat: no-repeat;
+    background-position: right;
+    &:focus {
+      outline: 2px solid $primary-brand;
+    }
+  }
+
+  &__container {
+    list-style: none;
+    margin-top: 4rem;
+    @include flex-column;
+    gap: 3rem;
+  }
+
+  &__item {
+    background-color: $primary-light;
+    padding: 2rem 4rem;
+    border-left: 6px solid $primary-brand;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0.4rem 0.4rem 0.4rem rgba($color: $primary-brand, $alpha: 0.2);
+  }
+
+  &__btn-container {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  ion-icon {
+    font-size: 2rem;
+    color: $secondary-brand;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary-brand;
+    }
+  }
+
+  &__content {
+    @include flex-column;
+    gap: 2rem;
+  }
+
+  &__employee {
+    font-weight: bold;
+    font-size: 1.6rem;
+  }
+}
