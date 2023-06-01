@@ -1,14 +1,11 @@
 import "./Tasks.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
 export default function Tasks() {
   const [filter, setFilter] = useState("");
   const [taskList, setTaskList] = useState([]);
   const [employeesArr, setEmployeesArr] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios

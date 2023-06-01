@@ -71,7 +71,6 @@
   }
 
   &__selected {
-    color: $primary-light;
-    background-color: $primary-brand;
+    border: 2px solid $primary-brand;
   }
 }

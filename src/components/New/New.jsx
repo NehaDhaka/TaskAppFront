@@ -11,6 +11,7 @@ export default function New() {
   const [assignedEmployeeId, setAssignedEmployeeId] = useState(0);
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
+  const [activeItem, setActiveItem] = useState(null);
 
   useEffect(() => {
     axios.get("http://localhost:8080/employees").then((response) => {
@@ -24,6 +25,7 @@ export default function New() {
 
   function handleOnClick(employeeId) {
     setAssignedEmployeeId(employeeId);
+    setActiveItem(employeeId);
   }
 
   function handleChange(event) {
@@ -70,7 +72,9 @@ export default function New() {
                 handleOnClick(employee.id);
               }}
               key={employee.id}
-              className={`new__item`}
+              className={`new__item ${
+                activeItem === employee.id && "new__selected"
+              }`}
             >
               <img className="new__img" src={employee.image} alt="" />
               <p className="new__name">{employee.name}</p>
